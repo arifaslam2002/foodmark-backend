@@ -64,7 +64,13 @@ app.include_router(visit.router)
 app.include_router(profile.router)
 app.include_router(filter.router)
 app.include_router(battle.router)
-
+@app.get("/test-db")
+def test_db():
+    try:
+        with engine.connect() as conn:
+            return {"message": "Database connected! ✅"}
+    except Exception as e:
+        return {"error": str(e)}
 @app.get("/")
 def home():
     return {"message": "Foodmark is running!"}
