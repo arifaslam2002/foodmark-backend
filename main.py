@@ -33,10 +33,14 @@ app = FastAPI(title="Foodmark")
 # ✅ CORS added here
 app.add_middleware(
     CORSMiddleware,
-    allow_origins    = ["http://localhost:3000"],  # React frontend
-    allow_credentials= True,
-    allow_methods    = ["*"],
-    allow_headers    = ["*"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://foodmark-frontend-665v.vercel.app",  # ✅ your vercel URL
+        "https://foodmark-frontend.vercel.app"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 Base.metadata.create_all(bind=engine)
